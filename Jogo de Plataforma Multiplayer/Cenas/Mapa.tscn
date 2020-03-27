@@ -1,0 +1,68 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Cenas/Grama.tres" type="TileSet" id=1]
+[ext_resource path="res://Skins/Players/icon.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/Player1.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Player2.gd" type="Script" id=4]
+[ext_resource path="res://Cenas/Limite.tres" type="TileSet" id=5]
+[ext_resource path="res://Scripts/Atirador2.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/Atirador1.gd" type="Script" id=7]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 32, 32 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 32, 32 )
+
+[node name="Mapa" type="Node"]
+
+[node name="Limite" type="TileMap" parent="."]
+tile_set = ExtResource( 5 )
+cell_size = Vector2( 32, 32 )
+format = 1
+tile_data = PoolIntArray( -262145, 0, 0, -327680, 0, 0, -327679, 0, 0, -327678, 0, 0, -327677, 0, 0, -327676, 0, 0, -327675, 0, 0, -327674, 0, 0, -327673, 0, 0, -327672, 0, 0, -327671, 0, 0, -327670, 0, 0, -327669, 0, 0, -327668, 0, 0, -327667, 0, 0, -327666, 0, 0, -327665, 0, 0, -327664, 0, 0, -327663, 0, 0, -327662, 0, 0, -327661, 0, 0, -327660, 0, 0, -327659, 0, 0, -327658, 0, 0, -327657, 0, 0, -327656, 0, 0, -327655, 0, 0, -327654, 0, 0, -327653, 0, 0, -327652, 0, 0, -327651, 0, 0, -327650, 0, 0, -327649, 0, 0, -327648, 0, 0, -196609, 0, 0, -262112, 0, 0, -131073, 0, 0, -196576, 0, 0, -65537, 0, 0, -131040, 0, 0, -1, 0, 0, -65504, 0, 0, 65535, 0, 0, 32, 0, 0, 131071, 0, 0, 65568, 0, 0, 196607, 0, 0, 131104, 0, 0, 262143, 0, 0, 196640, 0, 0, 327679, 0, 0, 262176, 0, 0, 393215, 0, 0, 327712, 0, 0, 458751, 0, 0, 393248, 0, 0, 524287, 0, 0, 458784, 0, 0, 589823, 0, 0, 524320, 0, 0, 655359, 0, 0, 589856, 0, 0, 720895, 0, 0, 655392, 0, 0, 786431, 0, 0, 720928, 0, 0, 851967, 0, 0, 786464, 0, 0, 917503, 0, 0, 852000, 0, 0, 983039, 0, 0, 917536, 0, 0, 1048575, 0, 0, 983072, 0, 0, 1114111, 0, 0, 1048608, 0, 0, 1179647, 0, 0, 1114144, 0, 0, 1245183, 0, 0, 1179680, 0, 0, 1310719, 0, 0, 1245216, 0, 0, 1376255, 0, 0, 1310752, 0, 0, 1441791, 0, 0, 1376288, 0, 0, 1507327, 0, 0, 1441824, 0, 0, 1572863, 0, 0, 1507328, 0, 0, 1507329, 0, 0, 1507330, 0, 0, 1507331, 0, 0, 1507332, 0, 0, 1507333, 0, 0, 1507334, 0, 0, 1507335, 0, 0, 1507336, 0, 0, 1507337, 0, 0, 1507338, 0, 0, 1507339, 0, 0, 1507340, 0, 0, 1507341, 0, 0, 1507342, 0, 0, 1507343, 0, 0, 1507344, 0, 0, 1507345, 0, 0, 1507346, 0, 0, 1507347, 0, 0, 1507348, 0, 0, 1507349, 0, 0, 1507350, 0, 0, 1507351, 0, 0, 1507352, 0, 0, 1507353, 0, 0, 1507354, 0, 0, 1507355, 0, 0, 1507356, 0, 0, 1507357, 0, 0, 1507358, 0, 0, 1507359, 0, 0, 1507360, 0, 0 )
+
+[node name="Grama" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 32, 32 )
+format = 1
+tile_data = PoolIntArray( 131086, 0, 0, 131087, 1, 0, 131088, 1, 0, 131089, 2, 0, 262153, 0, 0, 262154, 2, 0, 262165, 0, 0, 262166, 2, 0, 458754, 0, 0, 458755, 2, 0, 458780, 0, 0, 458781, 2, 0, 655364, 0, 0, 655365, 1, 0, 655366, 1, 0, 655367, 1, 0, 655368, 2, 0, 655383, 0, 0, 655384, 1, 0, 655385, 1, 0, 655386, 1, 0, 655387, 2, 0, 786445, 0, 0, 786446, 1, 0, 786447, 1, 0, 786448, 1, 0, 786449, 1, 0, 786450, 2, 0, 983046, 0, 0, 983047, 1, 0, 983048, 1, 0, 983049, 2, 0, 983062, 0, 0, 983063, 1, 0, 983064, 1, 0, 983065, 2, 0, 1179648, 0, 0, 1179649, 1, 0, 1179650, 1, 0, 1179651, 1, 0, 1179652, 2, 0, 1179659, 0, 0, 1179660, 1, 0, 1179661, 2, 0, 1179666, 0, 0, 1179667, 1, 0, 1179668, 2, 0, 1179675, 0, 0, 1179676, 1, 0, 1179677, 1, 0, 1179678, 1, 0, 1179679, 2, 0 )
+
+[node name="Player1" type="KinematicBody2D" parent="."]
+position = Vector2( 96, 544 )
+collision_layer = 262401
+collision_mask = 262401
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Player1"]
+texture = ExtResource( 2 )
+
+[node name="Shape" type="CollisionShape2D" parent="Player1"]
+shape = SubResource( 1 )
+
+[node name="Atirador1" type="Node2D" parent="Player1"]
+position = Vector2( 45, 0 )
+script = ExtResource( 7 )
+
+[node name="Player2" type="KinematicBody2D" parent="."]
+position = Vector2( 928, 544 )
+collision_layer = 262401
+collision_mask = 262401
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Player2"]
+modulate = Color( 0, 1, 0, 1 )
+texture = ExtResource( 2 )
+
+[node name="Shape" type="CollisionShape2D" parent="Player2"]
+shape = SubResource( 2 )
+
+[node name="Atirador2" type="Node2D" parent="Player2"]
+position = Vector2( -45, 0 )
+script = ExtResource( 6 )
