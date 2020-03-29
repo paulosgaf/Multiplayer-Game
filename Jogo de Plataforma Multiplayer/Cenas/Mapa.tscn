@@ -1,6 +1,7 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Cenas/Grama.tres" type="TileSet" id=1]
+[ext_resource path="res://Skins/Players/Player1/Dash0.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/Player1.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/Player2.gd" type="Script" id=4]
 [ext_resource path="res://Cenas/Limite.tres" type="TileSet" id=5]
@@ -12,9 +13,10 @@
 [ext_resource path="res://Skins/Players/Player1/Jump0.png" type="Texture" id=11]
 [ext_resource path="res://Skins/Players/Player1/Atack0.png" type="Texture" id=12]
 [ext_resource path="res://Skins/Players/Player2/Idle0.png" type="Texture" id=13]
+[ext_resource path="res://Skins/Players/Player2/Dash0.png" type="Texture" id=14]
+[ext_resource path="res://Skins/Players/Player2/Atack0.png" type="Texture" id=15]
 [ext_resource path="res://Skins/Players/Player2/Run0.png" type="Texture" id=17]
 [ext_resource path="res://Skins/Players/Player2/Jump0.png" type="Texture" id=18]
-[ext_resource path="res://Skins/Players/Player2/Atack7.png" type="Texture" id=21]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -28,14 +30,19 @@ animations = [ {
 "name": "Atack",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 9 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 11 ) ],
 "loop": true,
 "name": "Jump",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 9 ) ],
+"frames": [ ExtResource( 2 ) ],
 "loop": true,
-"name": "Idle",
+"name": "Dash",
 "speed": 5.0
 } ]
 
@@ -49,19 +56,24 @@ animations = [ {
 "name": "Run",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 21 ) ],
+"frames": [ ExtResource( 15 ) ],
 "loop": true,
 "name": "Atack",
 "speed": 20.0
+}, {
+"frames": [ ExtResource( 13 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 5.0
 }, {
 "frames": [ ExtResource( 18 ) ],
 "loop": true,
 "name": "Jump",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 13 ) ],
+"frames": [ ExtResource( 14 ) ],
 "loop": true,
-"name": "Idle",
+"name": "Dash",
 "speed": 5.0
 } ]
 
@@ -71,7 +83,7 @@ extents = Vector2( 12.0897, 30.169 )
 [node name="Mapa" type="Node"]
 
 [node name="Background" type="Sprite" parent="."]
-modulate = Color( 0, 0.698039, 0.827451, 1 )
+modulate = Color( 0.341176, 0.843137, 0.933333, 1 )
 position = Vector2( 512, 328 )
 texture = ExtResource( 10 )
 
@@ -82,10 +94,11 @@ format = 1
 tile_data = PoolIntArray( -262145, 0, 0, -327680, 0, 0, -327679, 0, 0, -327678, 0, 0, -327677, 0, 0, -327676, 0, 0, -327675, 0, 0, -327674, 0, 0, -327673, 0, 0, -327672, 0, 0, -327671, 0, 0, -327670, 0, 0, -327669, 0, 0, -327668, 0, 0, -327667, 0, 0, -327666, 0, 0, -327665, 0, 0, -327664, 0, 0, -327663, 0, 0, -327662, 0, 0, -327661, 0, 0, -327660, 0, 0, -327659, 0, 0, -327658, 0, 0, -327657, 0, 0, -327656, 0, 0, -327655, 0, 0, -327654, 0, 0, -327653, 0, 0, -327652, 0, 0, -327651, 0, 0, -327650, 0, 0, -327649, 0, 0, -327648, 0, 0, -196609, 0, 0, -262112, 0, 0, -131073, 0, 0, -196576, 0, 0, -65537, 0, 0, -131040, 0, 0, -1, 0, 0, -65504, 0, 0, 65535, 0, 0, 32, 0, 0, 131071, 0, 0, 65568, 0, 0, 196607, 0, 0, 131104, 0, 0, 262143, 0, 0, 196640, 0, 0, 327679, 0, 0, 262176, 0, 0, 393215, 0, 0, 327712, 0, 0, 458751, 0, 0, 393248, 0, 0, 524287, 0, 0, 458784, 0, 0, 589823, 0, 0, 524320, 0, 0, 655359, 0, 0, 589856, 0, 0, 720895, 0, 0, 655392, 0, 0, 786431, 0, 0, 720928, 0, 0, 851967, 0, 0, 786464, 0, 0, 917503, 0, 0, 852000, 0, 0, 983039, 0, 0, 917536, 0, 0, 1048575, 0, 0, 983072, 0, 0, 1114111, 0, 0, 1048608, 0, 0, 1179647, 0, 0, 1114144, 0, 0, 1245183, 0, 0, 1179680, 0, 0, 1310719, 0, 0, 1245216, 0, 0, 1376255, 0, 0, 1310752, 0, 0, 1441791, 0, 0, 1376288, 0, 0, 1507327, 0, 0, 1441824, 0, 0, 1572863, 0, 0, 1507328, 0, 0, 1507329, 0, 0, 1507330, 0, 0, 1507331, 0, 0, 1507332, 0, 0, 1507333, 0, 0, 1507334, 0, 0, 1507335, 0, 0, 1507336, 0, 0, 1507337, 0, 0, 1507338, 0, 0, 1507339, 0, 0, 1507340, 0, 0, 1507341, 0, 0, 1507342, 0, 0, 1507343, 0, 0, 1507344, 0, 0, 1507345, 0, 0, 1507346, 0, 0, 1507347, 0, 0, 1507348, 0, 0, 1507349, 0, 0, 1507350, 0, 0, 1507351, 0, 0, 1507352, 0, 0, 1507353, 0, 0, 1507354, 0, 0, 1507355, 0, 0, 1507356, 0, 0, 1507357, 0, 0, 1507358, 0, 0, 1507359, 0, 0, 1507360, 0, 0 )
 
 [node name="Grama" type="TileMap" parent="."]
+scale = Vector2( 0.5, 0.5 )
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 32, 32 )
 format = 1
-tile_data = PoolIntArray( 131086, 0, 0, 131087, 1, 0, 131088, 1, 0, 131089, 2, 0, 262153, 0, 0, 262154, 2, 0, 262165, 0, 0, 262166, 2, 0, 458754, 0, 0, 458755, 2, 0, 458780, 0, 0, 458781, 2, 0, 655364, 0, 0, 655365, 1, 0, 655366, 1, 0, 655367, 1, 0, 655368, 2, 0, 655383, 0, 0, 655384, 1, 0, 655385, 1, 0, 655386, 1, 0, 655387, 2, 0, 786445, 0, 0, 786446, 1, 0, 786447, 1, 0, 786448, 1, 0, 786449, 1, 0, 786450, 2, 0, 983046, 0, 0, 983047, 1, 0, 983048, 1, 0, 983049, 2, 0, 983062, 0, 0, 983063, 1, 0, 983064, 1, 0, 983065, 2, 0, 1179648, 0, 0, 1179649, 1, 0, 1179650, 1, 0, 1179651, 1, 0, 1179652, 2, 0, 1179659, 0, 0, 1179660, 1, 0, 1179661, 2, 0, 1179666, 0, 0, 1179667, 1, 0, 1179668, 2, 0, 1179675, 0, 0, 1179676, 1, 0, 1179677, 1, 0, 1179678, 1, 0, 1179679, 2, 0 )
+tile_data = PoolIntArray( 2162709, 0, 0, 2162710, 1, 0, 2162711, 1, 0, 2162712, 1, 0, 2162713, 1, 0, 2162714, 1, 0, 2162715, 1, 0, 2162716, 1, 0, 2162717, 1, 0, 2162718, 1, 0, 2162719, 1, 0, 2162720, 1, 0, 2162721, 1, 0, 2162722, 1, 0, 2162723, 1, 0, 2162724, 1, 0, 2162725, 1, 0, 2162726, 1, 0, 2162727, 1, 0, 2162728, 1, 0, 2162729, 1, 0, 2162730, 2, 0, 2359296, 0, 0, 2359297, 1, 0, 2359298, 1, 0, 2359299, 1, 0, 2359300, 1, 0, 2359301, 1, 0, 2359302, 1, 0, 2359303, 1, 0, 2359304, 1, 0, 2359305, 1, 0, 2359306, 1, 0, 2359307, 1, 0, 2359308, 1, 0, 2359309, 1, 0, 2359310, 1, 0, 2359311, 1, 0, 2359312, 1, 0, 2359313, 1, 0, 2359314, 2, 0, 2359341, 0, 0, 2359342, 1, 0, 2359343, 1, 0, 2359344, 1, 0, 2359345, 1, 0, 2359346, 1, 0, 2359347, 1, 0, 2359348, 1, 0, 2359349, 1, 0, 2359350, 1, 0, 2359351, 1, 0, 2359352, 1, 0, 2359353, 1, 0, 2359354, 1, 0, 2359355, 1, 0, 2359356, 1, 0, 2359357, 1, 0, 2359358, 1, 0, 2359359, 2, 0 )
 
 [node name="Player1" type="KinematicBody2D" parent="."]
 position = Vector2( 80, 545.665 )
@@ -97,10 +110,8 @@ __meta__ = {
 }
 
 [node name="Sprite" type="AnimatedSprite" parent="Player1"]
-scale = Vector2( 3, 3 )
 frames = SubResource( 1 )
-animation = "Run"
-frame = 1
+animation = "Idle"
 
 [node name="Shape" type="CollisionShape2D" parent="Player1"]
 position = Vector2( -2.85394, 0.237854 )
@@ -110,6 +121,9 @@ shape = SubResource( 2 )
 position = Vector2( 45, 0 )
 script = ExtResource( 7 )
 
+[node name="Timer" type="Timer" parent="Player1"]
+wait_time = 0.2
+
 [node name="Player2" type="KinematicBody2D" parent="."]
 position = Vector2( 928, 545.844 )
 collision_layer = 262401
@@ -118,7 +132,6 @@ script = ExtResource( 4 )
 
 [node name="Sprite" type="AnimatedSprite" parent="Player2"]
 position = Vector2( 9.44641, 0.147644 )
-scale = Vector2( 3, 3 )
 frames = SubResource( 3 )
 animation = "Idle"
 flip_h = true
@@ -130,3 +143,8 @@ shape = SubResource( 4 )
 [node name="Atirador2" type="Node2D" parent="Player2"]
 position = Vector2( -45, 0 )
 script = ExtResource( 6 )
+
+[node name="Timer" type="Timer" parent="Player2"]
+wait_time = 0.2
+[connection signal="timeout" from="Player1/Timer" to="Player1" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Player2/Timer" to="Player2" method="_on_Timer_timeout"]

@@ -2,15 +2,17 @@ extends KinematicBody2D
 
 const UP = Vector2(0, -1)
 const GRAVITY = 30
-const SPEED = 200
 const JUMP_HEIGHT = -600
+var SPEED = 200
+var tempoDash = 1.5
+var tempo = tempoDash
 var motion = Vector2()
 var vida = 3
 
 #----------MOVIMENTACAO DO PERSONAGEM----------
-# warning-ignore:unused_argument
 func _physics_process(delta):
 	
+	tempo += delta
 	motion.y += GRAVITY
 	
 	#-----RUN-----
@@ -28,23 +30,39 @@ func _physics_process(delta):
 	
 	#-----JUMP-----
 	if is_on_floor():
-		if Input.is_key_pressed(KEY_CONTROL):
+		if Input.is_key_pressed(KEY_KP_2):
 			motion.y = JUMP_HEIGHT
 	else:
 		$Sprite.play("Jump")
 	
 	#-----ATACK-----
-	if Input.is_key_pressed(KEY_ENTER):
+	if Input.is_key_pressed(KEY_KP_3):
 		$Sprite.play("Atack")
 		if $Sprite.flip_h:
 			motion.x = SPEED/2
 		else:
 			motion.x = -SPEED/2
+			
+	#-----DASH-----	
+	if SPEED == 500:
+		$Sprite.play("Dash")
+		if $Sprite.flip_h:
+			motion.x = -SPEED
+		else:
+			motion.x = SPEED
+			
+	if Input.is_key_pressed(KEY_KP_1) and tempo >= tempoDash:
+		SPEED = 500
+		tempo = 0
+		$Timer.start()
 		
+	#--------------
 	
-	
-		
 	motion = move_and_slide(motion, UP)
+	
+#--------------------TIMER DASH--------------------
+func _on_Timer_timeout():
+	SPEED = 200
 	
 #--------------------FUNCOES DE DANO--------------------
 	

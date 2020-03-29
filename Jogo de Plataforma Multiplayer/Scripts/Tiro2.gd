@@ -15,10 +15,10 @@ func _process(delta):
 	#-------------ALTERANDO POSIÇÃO DA SPRITE-------------
 	
 	
-	if direcaoX == 1:
+	if direcaoX == 1 or direcaoY == 1:
 		$Sprite.flip_h = false
 		$Sprite.rotate(0.1)
-	elif direcaoX == -1:
+	elif direcaoX == -1 or direcaoY == -1:
 		$Sprite.flip_h = true
 		$Sprite.rotate(-0.1)
 

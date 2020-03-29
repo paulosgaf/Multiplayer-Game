@@ -4,7 +4,7 @@
 [ext_resource path="res://Skins/Players/Player2/Tiro.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 5.52396, 3.50416 )
+extents = Vector2( 16.5381, 10.5016 )
 
 [node name="Tiro2" type="Node2D"]
 script = ExtResource( 1 )
@@ -13,7 +13,6 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 
 [node name="Body" type="StaticBody2D" parent="Sprite"]

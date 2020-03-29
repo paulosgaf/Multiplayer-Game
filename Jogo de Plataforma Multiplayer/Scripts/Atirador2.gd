@@ -16,7 +16,7 @@ func _process(delta):
 	var esquerda = Input.is_action_pressed("ui_left")
 	var baixo = Input.is_action_pressed("ui_down")
 	var cima = Input.is_action_pressed("ui_up")
-	var tiro = Input.is_key_pressed(KEY_ENTER)
+	var tiro = Input.is_key_pressed(KEY_KP_3)
 
 	tempo += delta
 	
