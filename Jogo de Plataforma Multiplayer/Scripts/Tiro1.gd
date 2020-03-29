@@ -43,10 +43,12 @@ func _process(delta):
 	if tempo > tempo_vida:
 		queue_free()
 		
+		
 #-------------FUNCAO DE COLISAO-------------
 func _on_Detector_body_entered(body):
 	if body is KinematicBody2D:
 		body.dano()
 		queue_free()
-	elif body is TileMap:
+	elif (body is TileMap or body is Node2D):
 		queue_free()
+	

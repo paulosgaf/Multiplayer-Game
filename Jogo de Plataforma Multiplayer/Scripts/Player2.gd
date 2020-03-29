@@ -77,5 +77,7 @@ func dano():
 		die()
 
 func die():
-	queue_free()
+	vida = 3
+	set_global_position(Vector2(850,544))
+	
 	

@@ -60,7 +60,7 @@ func _physics_process(delta):
 		tempo = 0
 		$Timer.start()
 		
-	#--------------
+	#---------
 	
 	motion = move_and_slide(motion, UP)
 	
@@ -76,6 +76,7 @@ func dano():
 		die()
 
 func die():
-	queue_free()
-
+	vida = 3
+	set_global_position(Vector2(200,544))
+	
 
