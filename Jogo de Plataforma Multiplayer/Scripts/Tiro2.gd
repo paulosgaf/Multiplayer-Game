@@ -14,26 +14,14 @@ func _process(delta):
 	
 	#-------------ALTERANDO POSIÇÃO DA SPRITE-------------
 	
-	if direcaoX == 1 and direcaoY == 0:
-		$Sprite.flip_h = true
-	elif direcaoX == -1 and direcaoY == 0:
+	
+	if direcaoX == 1:
 		$Sprite.flip_h = false
-	elif direcaoX == 0 and direcaoY == 1:
-		$Sprite.rotation_degrees = 90
-	elif direcaoX == 0 and direcaoY == -1:
-		$Sprite.rotation_degrees = -90
-	elif direcaoX == 1 and direcaoY == -1:
+		$Sprite.rotate(0.1)
+	elif direcaoX == -1:
 		$Sprite.flip_h = true
-		$Sprite.rotation_degrees = -45
-	elif direcaoX == 1 and direcaoY == 1:
-		$Sprite.flip_h = true
-		$Sprite.rotation_degrees = 45
-	elif direcaoX == -1 and direcaoY == -1:
-		$Sprite.flip_h = false
-		$Sprite.rotation_degrees = 45
-	elif direcaoX == -1 and direcaoY == 1:
-		$Sprite.flip_h = false
-		$Sprite.rotation_degrees = -45
+		$Sprite.rotate(-0.1)
+
 	
 	#-------------INICIANDO BALA E TEMPO DE VIDA-------------
 		
@@ -47,4 +35,6 @@ func _process(delta):
 func _on_Detector_body_entered(body):
 	if body is KinematicBody2D:
 		body.dano()
-	queue_free()
+		queue_free()
+	elif body is TileMap:
+		queue_free()

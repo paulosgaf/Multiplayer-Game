@@ -1,11 +1,11 @@
 extends Node2D
 
-onready var tiro0 = preload("res://Cenas/Tiro0.tscn")
+onready var tiro1 = preload("res://Cenas/Tiro1.tscn")
 
 const FREQUENCIA = 0.5 #Frequencia do Tiro
 var tempo = FREQUENCIA #Contador
 var direcaoX = 1 # 1 Direita; -1 Esquerda
-var direcaoY = 1 # 1 Direita; -1 Esquerda
+var direcaoY = 0 # 1 Direita; -1 Esquerda
 
 func _ready():
 	set_process(true)
@@ -40,76 +40,76 @@ func _process(delta):
 		set_position(Vector2(0,-45))
 	
 	#-----------INSTANCIANDO BALAS E SUAS DIREÇÕES-----------
-	var tiroZero
+	var tiroUm
 
 	if tiro and direita and baixo and tempo >= FREQUENCIA:
 		set_position(Vector2(45,45))
 		
-		tiroZero = tiro0.instance()
-		tiroZero.direcaoX = 1
-		tiroZero.direcaoY = 1
-		tiroZero.set_global_position(get_global_position())
-		get_node("../../").add_child(tiroZero)
+		tiroUm = tiro1.instance()
+		tiroUm.direcaoX = 1
+		tiroUm.direcaoY = 1
+		tiroUm.set_global_position(get_global_position())
+		get_node("../../").add_child(tiroUm)
 		tempo = 0
 	
 	elif tiro and direita and cima and tempo >= FREQUENCIA:
 		set_position(Vector2(45,-45))
 		
-		tiroZero = tiro0.instance()
-		tiroZero.direcaoX = 1
-		tiroZero.direcaoY = -1
-		tiroZero.set_global_position(get_global_position())
-		get_node("../../").add_child(tiroZero)
+		tiroUm = tiro1.instance()
+		tiroUm.direcaoX = 1
+		tiroUm.direcaoY = -1
+		tiroUm.set_global_position(get_global_position())
+		get_node("../../").add_child(tiroUm)
 		tempo = 0
 	
 	elif tiro and esquerda and baixo and tempo >= FREQUENCIA:
 		set_position(Vector2(-45,45))
 		
-		tiroZero = tiro0.instance()
-		tiroZero.direcaoX = -1
-		tiroZero.direcaoY = 1
-		tiroZero.set_global_position(get_global_position())
-		get_node("../../").add_child(tiroZero)
+		tiroUm = tiro1.instance()
+		tiroUm.direcaoX = -1
+		tiroUm.direcaoY = 1
+		tiroUm.set_global_position(get_global_position())
+		get_node("../../").add_child(tiroUm)
 		tempo = 0
 	
 	elif tiro and esquerda and cima and tempo >= FREQUENCIA:
 		set_position(Vector2(-45,-45))
 		
-		tiroZero = tiro0.instance()
-		tiroZero.direcaoX = -1
-		tiroZero.direcaoY = -1
-		tiroZero.set_global_position(get_global_position())
-		get_node("../../").add_child(tiroZero)
+		tiroUm = tiro1.instance()
+		tiroUm.direcaoX = -1
+		tiroUm.direcaoY = -1
+		tiroUm.set_global_position(get_global_position())
+		get_node("../../").add_child(tiroUm)
 		tempo = 0
 		
 	elif tiro and direcaoX == 1 and direcaoY == 0 and tempo >= FREQUENCIA:
-		tiroZero = tiro0.instance()
-		tiroZero.direcaoX = 1
-		tiroZero.direcaoY = 0
-		tiroZero.set_global_position(get_global_position())
-		get_node("../../").add_child(tiroZero)
+		tiroUm = tiro1.instance()
+		tiroUm.direcaoX = 1
+		tiroUm.direcaoY = 0
+		tiroUm.set_global_position(get_global_position())
+		get_node("../../").add_child(tiroUm)
 		tempo = 0
 	
 	elif tiro and direcaoX == -1 and direcaoY == 0 and tempo >= FREQUENCIA:
-		tiroZero = tiro0.instance()
-		tiroZero.direcaoX = -1
-		tiroZero.direcaoY = 0
-		tiroZero.set_global_position(get_global_position())
-		get_node("../../").add_child(tiroZero)
+		tiroUm = tiro1.instance()
+		tiroUm.direcaoX = -1
+		tiroUm.direcaoY = 0
+		tiroUm.set_global_position(get_global_position())
+		get_node("../../").add_child(tiroUm)
 		tempo = 0
 	
 	elif tiro and  direcaoX == 0 and direcaoY == 1 and tempo >= FREQUENCIA:
-		tiroZero = tiro0.instance()
-		tiroZero.direcaoX = 0
-		tiroZero.direcaoY = 1
-		tiroZero.set_global_position(get_global_position())
-		get_node("../../").add_child(tiroZero)
+		tiroUm = tiro1.instance()
+		tiroUm.direcaoX = 0
+		tiroUm.direcaoY = 1
+		tiroUm.set_global_position(get_global_position())
+		get_node("../../").add_child(tiroUm)
 		tempo = 0
 	
 	elif tiro and direcaoX == 0 and direcaoY == -1 and tempo >= FREQUENCIA:
-		tiroZero = tiro0.instance()
-		tiroZero.direcaoX = 0
-		tiroZero.direcaoY = -1
-		tiroZero.set_global_position(get_global_position())
-		get_node("../../").add_child(tiroZero)
+		tiroUm = tiro1.instance()
+		tiroUm.direcaoX = 0
+		tiroUm.direcaoY = -1
+		tiroUm.set_global_position(get_global_position())
+		get_node("../../").add_child(tiroUm)
 		tempo = 0
