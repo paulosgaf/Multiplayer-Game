@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bala.png-76def15c68367094bcee4ddec9513241.stex"
+path="res://.import/Fundo.png-7074b26d8633532eafb22345280a312c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Skins/Objetos/bala.png"
-dest_files=[ "res://.import/bala.png-76def15c68367094bcee4ddec9513241.stex" ]
+source_file="res://Skins/Objetos/HealthBar/Fundo.png"
+dest_files=[ "res://.import/Fundo.png-7074b26d8633532eafb22345280a312c.stex" ]
 
 [params]
 

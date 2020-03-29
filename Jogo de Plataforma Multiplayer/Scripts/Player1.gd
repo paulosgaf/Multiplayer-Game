@@ -20,10 +20,14 @@ func _physics_process(delta):
 		motion.x = SPEED
 		$Sprite.play("Run")
 		$Sprite.flip_h = false
+		$Shape.set_position(Vector2(-5,0))
+		$HealthBar.set_position(Vector2(-25,-50))
 	elif Input.is_key_pressed(KEY_A):
 		motion.x = -SPEED
 		$Sprite.play("Run")
 		$Sprite.flip_h = true
+		$Shape.set_position(Vector2(0,0))
+		$HealthBar.set_position(Vector2(-15,-50))
 	else:
 		motion.x = 0
 		$Sprite.play("Idle")
@@ -67,6 +71,7 @@ func _on_Timer_timeout():
 #--------------------FUNCOES DE DANO--------------------	
 func dano():
 	vida -= 1
+	$HealthBar._on_health_updated(vida)
 	if(vida <= 0):
 		die()
 
