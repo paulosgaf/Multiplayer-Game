@@ -78,6 +78,6 @@ func dano():
 
 func die():
 	vida = 3
-	set_global_position(Vector2(850,544))
+	set_global_position(Vector2(320,128))
 	
 	
