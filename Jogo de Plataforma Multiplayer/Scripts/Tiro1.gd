@@ -3,8 +3,8 @@ extends Node2D
 #---------------VARIAVEIS DO TIRO-------------------------
 var direcaoX = 1 # 1 Direita; -1 Esquerda
 var direcaoY = 0 # 1 Baixo; -1 Cima
-var velocidade = 500 #Velocidade do Tiro
-var tempo_vida = 3 # Tempo de vida do tiro
+var velocidade = 700 #Velocidade do Tiro
+var tempo_vida = 5 # Tempo de vida do tiro
 var tempo = 0 # Contador
 
 #---------------VARIAVEIS DE LIMITE DO MAPA#---------------
@@ -73,4 +73,3 @@ func _on_Detector_body_entered(body):
 		queue_free()
 	elif (body is TileMap or body is Node2D):
 		queue_free()
-	

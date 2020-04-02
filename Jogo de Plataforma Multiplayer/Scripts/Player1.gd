@@ -8,21 +8,36 @@ var tempoDash = 1.5
 var tempo = tempoDash
 var motion = Vector2()
 var vida = 3
+var jump_cont = 0
+var extra_jump = 1
+var was_pressed = true
 
 #----------MOVIMENTACAO DO PERSONAGEM----------
 func _physics_process(delta):
+	
+	var direita = Input.is_key_pressed(KEY_D)
+	var esquerda = Input.is_key_pressed(KEY_A)
+	var dash = Input.is_key_pressed(KEY_SHIFT)
+	var jump = Input.is_key_pressed(KEY_SPACE) && !was_pressed
+	var tiro = Input.is_key_pressed(KEY_V) 
+	
+	#----VERIFICA SE TECLA ESTA PRESSIONADA----
+	if Input.is_key_pressed(KEY_SPACE):
+		was_pressed = true
+	elif !Input.is_key_pressed(KEY_SPACE):
+		was_pressed = false
 	
 	tempo += delta
 	motion.y += GRAVITY
 	
 	#-----RUN-----
-	if Input.is_key_pressed(KEY_D):
+	if direita:
 		motion.x = SPEED
 		$Sprite.play("Run")
 		$Sprite.flip_h = false
 		$Shape.set_position(Vector2(-5,0))
 		$HealthBar.set_position(Vector2(-25,-50))
-	elif Input.is_key_pressed(KEY_A):
+	elif esquerda:
 		motion.x = -SPEED
 		$Sprite.play("Run")
 		$Sprite.flip_h = true
@@ -33,30 +48,29 @@ func _physics_process(delta):
 		$Sprite.play("Idle")
 		
 	#-----JUMP-----
+	if jump and jump_cont < extra_jump:
+		motion.y = JUMP_HEIGHT
+		jump_cont += 1
+
 	if is_on_floor():
-		if Input.is_key_pressed(KEY_SPACE):
-			motion.y = JUMP_HEIGHT
+		jump_cont = 0
 	else:
 		$Sprite.play("Jump")
 		
 	#-----ATACK-----	
-	if Input.is_key_pressed(KEY_V):
+	if tiro:
 		$Sprite.play("Atack")
-		if $Sprite.flip_h:
-			motion.x = SPEED/2
-		else:
-			motion.x = -SPEED/2
 			
 	#-----DASH-----	
-	if SPEED == 500:
+	if SPEED == 600:
 		$Sprite.play("Dash")
 		if $Sprite.flip_h:
 			motion.x = -SPEED
 		else:
 			motion.x = SPEED
 			
-	if Input.is_key_pressed(KEY_SHIFT) and tempo >= tempoDash:
-		SPEED = 500
+	if dash and tempo >= tempoDash:
+		SPEED = 600
 		tempo = 0
 		$Timer.start()
 		
@@ -68,7 +82,12 @@ func _physics_process(delta):
 func _on_Timer_timeout():
 	SPEED = 200
 
-#--------------------FUNCOES DE DANO--------------------	
+#--------------------FUNCOES DE VIDA--------------------
+func life():
+	if vida < 3:
+		vida += 1
+		$HealthBar._on_health_updated(vida)
+	
 func dano():
 	vida -= 1
 	$HealthBar._on_health_updated(vida)
@@ -77,6 +96,8 @@ func dano():
 
 func die():
 	vida = 3
-	set_global_position(Vector2(-320,-192))
+	set_global_position(Vector2(-320,-225))
+	
+
 	
 

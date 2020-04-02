@@ -3,7 +3,7 @@
 [ext_resource path="res://Scripts/Tiro2.gd" type="Script" id=1]
 [ext_resource path="res://Skins/Players/Player2/Tiro.png" type="Texture" id=2]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 16.5381, 10.5016 )
 
 [node name="Tiro2" type="Node2D"]
@@ -20,12 +20,12 @@ collision_layer = 128
 collision_mask = 128
 
 [node name="Shape" type="CollisionShape2D" parent="Sprite/Body"]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Detector" type="Area2D" parent="Sprite"]
 collision_layer = 132353
 collision_mask = 132353
 
 [node name="Shape" type="CollisionShape2D" parent="Sprite/Detector"]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 [connection signal="body_entered" from="Sprite/Detector" to="." method="_on_Detector_body_entered"]

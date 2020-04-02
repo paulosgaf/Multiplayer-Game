@@ -7,6 +7,8 @@ var tempo = FREQUENCIA #Contador
 var direcaoX = -1 # 1 Direita; -1 Esquerda
 var direcaoY = 0 # 1 Direita; -1 Esquerda
 
+var was_pressed = true
+
 func _ready():
 	set_process(true)
 	pass 
@@ -16,7 +18,13 @@ func _process(delta):
 	var esquerda = Input.is_action_pressed("ui_left")
 	var baixo = Input.is_action_pressed("ui_down")
 	var cima = Input.is_action_pressed("ui_up")
-	var tiro = Input.is_key_pressed(KEY_KP_3)
+	var tiro = Input.is_key_pressed(KEY_KP_3) && !was_pressed
+	
+	#----VERIFICA SE TECLA ESTA PRESSIONADA----
+	if Input.is_key_pressed(KEY_KP_3):
+		was_pressed = true
+	elif !Input.is_key_pressed(KEY_KP_3):
+		was_pressed = false
 
 	tempo += delta
 	

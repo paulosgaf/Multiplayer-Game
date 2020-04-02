@@ -37,5 +37,12 @@ func _process(delta):
 		$Player2.set_global_position(Vector2($Player2.get_global_position().x,MIN_Y))
 	elif $Player2.get_global_position().y < MIN_Y:
 		$Player2.set_global_position(Vector2($Player2.get_global_position().x,MAX_Y))
+		
+
+#-----------------------FECHA O JOGO NO ESC-----------------------
+func _unhandled_input(event):
+	if event is InputEventKey:
+		if event.pressed and event.scancode == KEY_ESCAPE:
+			get_tree().quit()
 
 	
