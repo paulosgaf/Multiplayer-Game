@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://Cenas/Limite.tres" type="TileSet" id=1]
 [ext_resource path="res://Skins/Players/Player1/Dash0.png" type="Texture" id=2]
@@ -24,23 +24,29 @@
 [ext_resource path="res://Skins/Players/Player1/Wall0.png" type="Texture" id=22]
 [ext_resource path="res://Skins/Players/Player2/Wall0.png" type="Texture" id=23]
 [ext_resource path="res://Skins/Players/Player2/Atack1.png" type="Texture" id=24]
+[ext_resource path="res://Scripts/Contador.gd" type="Script" id=25]
+[ext_resource path="res://Skins/Objetos/Contador/Robot Crush.ttf" type="DynamicFontData" id=26]
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="DynamicFont" id=1]
+size = 40
+use_filter = true
+font_data = ExtResource( 26 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 50
+font_data = ExtResource( 26 )
+
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 5, 250 )
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 5, 250 )
 
-[sub_resource type="SpriteFrames" id=1]
+[sub_resource type="SpriteFrames" id=5]
 animations = [ {
 "frames": [ ExtResource( 9 ) ],
 "loop": true,
 "name": "Idle",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 12 ) ],
-"loop": true,
-"name": "Atack",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 8 ), ExtResource( 9 ) ],
@@ -58,26 +64,31 @@ animations = [ {
 "name": "Dash",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 12 ) ],
+"loop": true,
+"name": "Atack",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 22 ) ],
 "loop": true,
 "name": "Wall",
 "speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 12.0897, 30.169 )
 
-[sub_resource type="SpriteFrames" id=3]
+[sub_resource type="SpriteFrames" id=7]
 animations = [ {
 "frames": [ ExtResource( 13 ) ],
 "loop": true,
 "name": "Idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 15 ) ],
+"frames": [ ExtResource( 24 ) ],
 "loop": true,
-"name": "Atack",
-"speed": 20.0
+"name": "AtackWall",
+"speed": 5.0
 }, {
 "frames": [ ExtResource( 17 ), ExtResource( 13 ) ],
 "loop": true,
@@ -94,19 +105,65 @@ animations = [ {
 "name": "Dash",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 15 ) ],
+"loop": true,
+"name": "Atack",
+"speed": 20.0
+}, {
 "frames": [ ExtResource( 23 ) ],
 "loop": true,
 "name": "Wall",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 24 ) ],
-"loop": true,
-"name": "AtackWall",
 "speed": 5.0
 } ]
 
 [node name="Mapa" type="Node"]
 script = ExtResource( 19 )
+
+[node name="Contadores" type="Node" parent="."]
+
+[node name="Tempo" type="RichTextLabel" parent="Contadores"]
+margin_left = -46.5724
+margin_top = -348.086
+margin_right = 48.4276
+margin_bottom = -298.086
+custom_fonts/normal_font = SubResource( 1 )
+text = "00:00:00"
+scroll_active = false
+script = ExtResource( 25 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="Contadores/Tempo"]
+wait_time = 0.01
+autostart = true
+
+[node name="Placar_p1" type="RichTextLabel" parent="Contadores"]
+margin_left = -100.0
+margin_top = -380.0
+margin_right = -73.0
+margin_bottom = -321.0
+custom_fonts/normal_font = SubResource( 2 )
+text = "0"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Placar_p2" type="RichTextLabel" parent="Contadores"]
+margin_left = 75.0
+margin_top = -380.0
+margin_right = 102.0
+margin_bottom = -321.0
+custom_fonts/normal_font = SubResource( 2 )
+bbcode_text = "0
+"
+text = "0
+"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Cenario" type="Node" parent="."]
 
@@ -128,6 +185,7 @@ tile_data = PoolIntArray( -1048579, 1073741824, 0, -1048578, 1073741824, 0, -104
 
 [node name="Pedras" type="TileMap" parent="Cenario"]
 scale = Vector2( 2, 2 )
+z_index = -1
 tile_set = ExtResource( 20 )
 cell_size = Vector2( 16, 16 )
 format = 1
@@ -188,11 +246,11 @@ collision_mask = 16
 
 [node name="Direita" type="CollisionShape2D" parent="Cenario/Paredes_p1"]
 position = Vector2( 420, 70 )
-shape = SubResource( 5 )
+shape = SubResource( 3 )
 
 [node name="Esquerda" type="CollisionShape2D" parent="Cenario/Paredes_p1"]
 position = Vector2( -420, -70 )
-shape = SubResource( 6 )
+shape = SubResource( 4 )
 
 [node name="Paredes_p2" type="Area2D" parent="Cenario"]
 collision_layer = 16384
@@ -200,11 +258,11 @@ collision_mask = 16384
 
 [node name="Direita" type="CollisionShape2D" parent="Cenario/Paredes_p2"]
 position = Vector2( 420, 70 )
-shape = SubResource( 5 )
+shape = SubResource( 3 )
 
 [node name="Esquerda" type="CollisionShape2D" parent="Cenario/Paredes_p2"]
 position = Vector2( -420, -70 )
-shape = SubResource( 6 )
+shape = SubResource( 4 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
@@ -220,12 +278,12 @@ __meta__ = {
 
 [node name="Sprite" type="AnimatedSprite" parent="Player1"]
 position = Vector2( -2.85394, 0 )
-frames = SubResource( 1 )
+frames = SubResource( 5 )
 animation = "Idle"
 
 [node name="Shape" type="CollisionShape2D" parent="Player1"]
 position = Vector2( -5, 0 )
-shape = SubResource( 2 )
+shape = SubResource( 6 )
 
 [node name="Atirador1" type="Node2D" parent="Player1"]
 position = Vector2( 45, 0 )
@@ -251,12 +309,12 @@ __meta__ = {
 
 [node name="Sprite" type="AnimatedSprite" parent="Player2"]
 position = Vector2( 9, 0 )
-frames = SubResource( 3 )
+frames = SubResource( 7 )
 animation = "Idle"
 flip_h = true
 
 [node name="Shape" type="CollisionShape2D" parent="Player2"]
-shape = SubResource( 2 )
+shape = SubResource( 6 )
 
 [node name="Atirador2" type="Node2D" parent="Player2"]
 position = Vector2( -45, 0 )
@@ -273,6 +331,7 @@ margin_bottom = -40.0
 
 [node name="Life" parent="." instance=ExtResource( 21 )]
 position = Vector2( 0.181889, -26.5964 )
+[connection signal="timeout" from="Contadores/Tempo/Timer" to="Contadores/Tempo" method="_on_Timer_timeout"]
 [connection signal="body_entered" from="Cenario/Paredes_p1" to="Player1" method="_on_Paredes_p1_body_entered"]
 [connection signal="body_exited" from="Cenario/Paredes_p1" to="Player1" method="_on_Paredes_p1_body_exited"]
 [connection signal="body_entered" from="Cenario/Paredes_p2" to="Player2" method="_on_Paredes_p2_body_entered"]

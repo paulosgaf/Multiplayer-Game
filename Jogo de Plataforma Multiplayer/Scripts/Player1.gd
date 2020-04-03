@@ -114,6 +114,8 @@ func dano():
 func die():
 	vida = 3
 	set_global_position(Vector2(-320,-225))
+	var placar_p2 = get_parent().get_node("Contadores/Placar_p2")
+	placar_p2.text = str(int(placar_p2.text)+1)
 	
 func _on_Paredes_p1_body_entered(body):
 	if body is KinematicBody2D:
