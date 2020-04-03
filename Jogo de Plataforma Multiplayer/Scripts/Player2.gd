@@ -1,8 +1,8 @@
 extends KinematicBody2D
 
-const UP = Vector2(0, -1)
-const GRAVITY = 30
-const JUMP_HEIGHT = -600
+var UP = Vector2(0, -1)
+var GRAVITY = 30
+var JUMP_HEIGHT = -600
 var SPEED = 200
 var tempoDash = 1.5
 var tempo = tempoDash
@@ -10,6 +10,7 @@ var motion = Vector2()
 var vida = 3
 var jump_cont = 0
 var extra_jump = 1
+var _on_wall = false
 var was_pressed = true
 
 #----------MOVIMENTACAO DO PERSONAGEM----------
@@ -21,23 +22,27 @@ func _physics_process(delta):
 	var jump = Input.is_key_pressed(KEY_KP_2) && !was_pressed
 	var tiro = Input.is_key_pressed(KEY_KP_3) 
 	
+	tempo += delta
+	
 	#----VERIFICA SE TECLA ESTA PRESSIONADA----
 	if Input.is_key_pressed(KEY_KP_2):
 		was_pressed = true
 	elif !Input.is_key_pressed(KEY_KP_2):
 		was_pressed = false
 	
-	tempo += delta
-	motion.y += GRAVITY
+	#----GRAVIDADE----
+	if !_on_wall:
+		motion.y += GRAVITY
 	
 	#-----RUN-----
-	if direita:
+	if direita and !_on_wall:
 		motion.x = SPEED
 		$Sprite.play("Run")
 		$Sprite.flip_h = false
 		$Shape.set_position(Vector2(18,0))
 		$HealthBar.set_position(Vector2(-5,-50))
-	elif esquerda:
+		
+	elif esquerda and !_on_wall:
 		motion.x = -SPEED
 		$Sprite.play("Run")
 		$Sprite.flip_h = true
@@ -45,36 +50,49 @@ func _physics_process(delta):
 		$HealthBar.set_position(Vector2(-15,-50))
 	else:
 		motion.x = 0
-		$Sprite.play("Idle")	
+		$Sprite.play("Idle")
 	
-	#-----JUMP-----
+	#----------JUMPs----------
 	if jump and jump_cont < extra_jump:
 		motion.y = JUMP_HEIGHT
 		jump_cont += 1
+		_on_wall = false
 
 	if is_on_floor():
 		jump_cont = 0
+		
+	elif _on_wall: 
+		motion.y = 30
+		jump_cont = -1
+		$Sprite.play("Wall")
+		if $Sprite.flip_h:
+			$HealthBar.set_position(Vector2(-25,-50))
+		else: 
+			$HealthBar.set_position(Vector2(5,-50))
+		
 	else:
 		$Sprite.play("Jump")
 	
-	#-----ATACK-----
-	if tiro:
+	#----------ATACK----------
+	if tiro and !_on_wall:
 		$Sprite.play("Atack")
+	elif tiro and _on_wall:
+		$Sprite.play("AtackWall")
 			
-	#-----DASH-----	
+	#----------DASH----------
+	if dash and tempo >= tempoDash and !_on_wall:
+		SPEED = 600
+		tempo = 0
+		$Timer.start()
+		
 	if SPEED == 600:
 		$Sprite.play("Dash")
 		if $Sprite.flip_h:
 			motion.x = -SPEED
 		else:
 			motion.x = SPEED
-			
-	if dash and tempo >= tempoDash:
-		SPEED = 600
-		tempo = 0
-		$Timer.start()
-		
-	#--------------
+
+	#------------------------
 	
 	motion = move_and_slide(motion, UP)
 	
@@ -99,3 +117,12 @@ func die():
 	set_global_position(Vector2(320,130))
 	
 	
+
+
+func _on_Paredes_body_entered(body):
+	if body is KinematicBody2D:
+		_on_wall = true
+
+func _on_Paredes_body_exited(body):
+	if body is KinematicBody2D:
+		_on_wall = false

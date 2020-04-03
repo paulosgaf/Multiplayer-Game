@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Cenas/Limite.tres" type="TileSet" id=1]
 [ext_resource path="res://Skins/Players/Player1/Dash0.png" type="Texture" id=2]
@@ -21,6 +21,15 @@
 [ext_resource path="res://Scripts/Mapa.gd" type="Script" id=19]
 [ext_resource path="res://Cenas/Pedras.tres" type="TileSet" id=20]
 [ext_resource path="res://Cenas/Life.tscn" type="PackedScene" id=21]
+[ext_resource path="res://Skins/Players/Player1/Wall0.png" type="Texture" id=22]
+[ext_resource path="res://Skins/Players/Player2/Wall0.png" type="Texture" id=23]
+[ext_resource path="res://Skins/Players/Player2/Atack1.png" type="Texture" id=24]
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 5, 250 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 5, 250 )
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -29,14 +38,14 @@ animations = [ {
 "name": "Idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 8 ), ExtResource( 9 ) ],
-"loop": true,
-"name": "Run",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 12 ) ],
 "loop": true,
 "name": "Atack",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "Run",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 11 ) ],
@@ -47,6 +56,11 @@ animations = [ {
 "frames": [ ExtResource( 2 ) ],
 "loop": true,
 "name": "Dash",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 22 ) ],
+"loop": true,
+"name": "Wall",
 "speed": 5.0
 } ]
 
@@ -60,15 +74,15 @@ animations = [ {
 "name": "Idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 17 ), ExtResource( 13 ) ],
-"loop": true,
-"name": "Run",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 15 ) ],
 "loop": true,
 "name": "Atack",
 "speed": 20.0
+}, {
+"frames": [ ExtResource( 17 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "Run",
+"speed": 5.0
 }, {
 "frames": [ ExtResource( 18 ) ],
 "loop": true,
@@ -78,6 +92,16 @@ animations = [ {
 "frames": [ ExtResource( 14 ) ],
 "loop": true,
 "name": "Dash",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 23 ) ],
+"loop": true,
+"name": "Wall",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 24 ) ],
+"loop": true,
+"name": "AtackWall",
 "speed": 5.0
 } ]
 
@@ -158,6 +182,16 @@ collision_mask = 0
 format = 1
 tile_data = PoolIntArray( -131076, -2147483648, 0, -131075, -1610612736, 0, -131074, -2147483648, 0, -131073, -1610612736, 0, -196608, -2147483648, 0, -196607, -1610612736, 0, -196606, -2147483648, 0, -196605, -1610612736, 0, -65540, -2147483648, 0, -65539, -1610612736, 0, -65538, -2147483648, 0, -65537, -1610612736, 0, -131072, -2147483648, 0, -131071, -1610612736, 0, -131070, -2147483648, 0, -131069, -1610612736, 0, -4, -2147483648, 0, -3, -1610612736, 0, -2, -2147483648, 0, -1, -1610612736, 0, -65536, -2147483648, 0, -65535, -1610612736, 0, -65534, -2147483648, 0, -65533, -1610612736, 0, 65532, -2147483648, 0, 65533, -1610612736, 0, 65534, -1073741824, 0, 65535, -1610612736, 0, 0, -2147483648, 0, 1, -1610612736, 0, 2, -2147483648, 0, 3, -1610612736, 0, 131068, -2147483648, 0, 131069, -1610612736, 0, 131070, -1073741824, 0, 131071, -1610612736, 0, 65536, -2147483648, 0, 65537, -1610612736, 0, 65538, -2147483648, 0, 65539, -1610612736, 0, 196604, -2147483648, 0, 196605, -1610612736, 0, 196606, -1073741824, 0, 196607, -1610612736, 0, 131072, -2147483648, 0, 131073, -1610612736, 0, 131074, -2147483648, 0, 131075, -1610612736, 0 )
 
+[node name="Paredes" type="Area2D" parent="Cenario"]
+
+[node name="Direita" type="CollisionShape2D" parent="Cenario/Paredes"]
+position = Vector2( 420, 70 )
+shape = SubResource( 5 )
+
+[node name="Esquerda" type="CollisionShape2D" parent="Cenario/Paredes"]
+position = Vector2( -420, -70 )
+shape = SubResource( 6 )
+
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 
@@ -204,7 +238,7 @@ __meta__ = {
 [node name="Sprite" type="AnimatedSprite" parent="Player2"]
 position = Vector2( 9, 0 )
 frames = SubResource( 3 )
-animation = "Run"
+animation = "Idle"
 flip_h = true
 
 [node name="Shape" type="CollisionShape2D" parent="Player2"]
@@ -225,5 +259,9 @@ margin_bottom = -40.0
 
 [node name="Life" parent="." instance=ExtResource( 21 )]
 position = Vector2( 0.181889, -26.5964 )
+[connection signal="body_entered" from="Cenario/Paredes" to="Player2" method="_on_Paredes_body_entered"]
+[connection signal="body_entered" from="Cenario/Paredes" to="Player1" method="_on_Paredes_body_entered"]
+[connection signal="body_exited" from="Cenario/Paredes" to="Player2" method="_on_Paredes_body_exited"]
+[connection signal="body_exited" from="Cenario/Paredes" to="Player1" method="_on_Paredes_body_exited"]
 [connection signal="timeout" from="Player1/Timer" to="Player1" method="_on_Timer_timeout"]
 [connection signal="timeout" from="Player2/Timer" to="Player2" method="_on_Timer_timeout"]
