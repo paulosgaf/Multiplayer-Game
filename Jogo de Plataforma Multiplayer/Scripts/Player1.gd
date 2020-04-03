@@ -115,14 +115,10 @@ func die():
 	vida = 3
 	set_global_position(Vector2(-320,-225))
 	
-
-	
-func _on_Paredes_body_entered(body):
+func _on_Paredes_p1_body_entered(body):
 	if body is KinematicBody2D:
 		_on_wall = true
 
-
-func _on_Paredes_body_exited(body):
+func _on_Paredes_p1_body_exited(body):
 	if body is KinematicBody2D:
 		_on_wall = false
-	
