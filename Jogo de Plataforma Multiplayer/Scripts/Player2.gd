@@ -61,14 +61,19 @@ func _physics_process(delta):
 	if is_on_floor():
 		jump_cont = 0
 		
-	elif _on_wall: 
+	elif _on_wall:
 		motion.y = 30
 		jump_cont = -1
 		$Sprite.play("Wall")
 		if $Sprite.flip_h:
 			$HealthBar.set_position(Vector2(-25,-50))
+			if !esquerda:
+				_on_wall = false
 		else: 
 			$HealthBar.set_position(Vector2(5,-50))
+			if !direita:
+				_on_wall = false
+			
 		
 	else:
 		$Sprite.play("Jump")

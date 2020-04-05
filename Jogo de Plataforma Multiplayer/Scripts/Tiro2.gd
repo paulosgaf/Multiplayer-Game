@@ -10,8 +10,7 @@ var tempo = 0 # Contador
 #---------------VARIAVEIS DE LIMITE DO MAPA#---------------
 var MAX_X = 560
 var MIN_X = -560
-const H_MAX_X = 340
-const H_MIN_X = 270
+const H_X = 512
 
 var MAX_Y = 440
 var MIN_Y = -440
@@ -45,9 +44,9 @@ func _process(delta):
 	#---------------------TELEPORTE DO MAPA#---------------------
 
 	if get_global_position().x < MIN_X:
-		set_global_position(Vector2(MAX_X,get_global_position().x + H_MAX_X))
+		set_global_position(Vector2(MAX_X,get_global_position().y - H_X))
 	elif get_global_position().x > MAX_X:
-		set_global_position(Vector2(MIN_X,get_global_position().x - H_MIN_X))
+		set_global_position(Vector2(MIN_X,get_global_position().y + H_X))
 	elif get_global_position().y > MAX_Y:
 		set_global_position(Vector2(get_global_position().x,MIN_Y))
 	elif get_global_position().y < MIN_Y:

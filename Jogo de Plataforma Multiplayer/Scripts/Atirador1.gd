@@ -7,18 +7,33 @@ var tempo = FREQUENCIA #Contador
 var direcaoX = 1 # 1 Direita; -1 Esquerda
 var direcaoY = 0 # 1 Direita; -1 Esquerda
 
+var direita
+var esquerda
+var cima
+var baixo
+var tiro
 var was_pressed = true
+var last_pressed = 1
 
 func _ready():
 	set_process(true)
 	pass 
 	
 func _process(delta):
-	var direita = Input.is_key_pressed(KEY_D)
-	var esquerda = Input.is_key_pressed(KEY_A)
-	var cima = Input.is_key_pressed(KEY_W)
-	var baixo = Input.is_key_pressed(KEY_S)
-	var tiro = Input.is_key_pressed(KEY_V) && !was_pressed
+	
+	#----SETA TECLAS PARA ATIRAR DA PAREDE OU DO CHAO----
+	var _on_wall = get_parent().get_parent().get_node("Player1")._on_wall
+	
+	if(_on_wall):
+		direita = Input.is_key_pressed(KEY_A)
+		esquerda = Input.is_key_pressed(KEY_D)
+	else:
+		direita = Input.is_key_pressed(KEY_D)
+		esquerda = Input.is_key_pressed(KEY_A)
+		
+	cima = Input.is_key_pressed(KEY_W)
+	baixo = Input.is_key_pressed(KEY_S)
+	tiro = Input.is_key_pressed(KEY_V) && !was_pressed
 	
 	#----VERIFICA SE TECLA ESTA PRESSIONADA----
 	if Input.is_key_pressed(KEY_V):
@@ -33,10 +48,12 @@ func _process(delta):
 		direcaoX = 1
 		direcaoY = 0
 		set_position(Vector2(45,0))
+		last_pressed = 1
 	elif esquerda:
 		direcaoX = -1
 		direcaoY = 0
 		set_position(Vector2(-45,0))
+		last_pressed = -1
 	elif baixo:
 		direcaoX = 0
 		direcaoY = 1
@@ -45,6 +62,18 @@ func _process(delta):
 		direcaoX = 0
 		direcaoY = -1
 		set_position(Vector2(0,-45))
+	else: 
+		#----Voltando direção pra direita ou esquerda
+		if last_pressed == 1:
+			direcaoX = 1
+			direcaoY = 0
+			set_position(Vector2(45,0))
+		elif last_pressed == -1:
+			direcaoX = -1
+			direcaoY = 0
+			set_position(Vector2(-45,0))
+		
+		
 	
 	#-----------INSTANCIANDO BALAS E SUAS DIREÇÕES-----------
 	var tiroUm

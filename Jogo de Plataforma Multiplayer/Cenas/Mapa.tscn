@@ -37,7 +37,7 @@ size = 50
 font_data = ExtResource( 26 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 5, 250 )
+extents = Vector2( 5, 200 )
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 5, 250 )
@@ -54,6 +54,11 @@ animations = [ {
 "name": "Run",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 12 ) ],
+"loop": true,
+"name": "Atack",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 11 ) ],
 "loop": true,
 "name": "Jump",
@@ -62,11 +67,6 @@ animations = [ {
 "frames": [ ExtResource( 2 ) ],
 "loop": true,
 "name": "Dash",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 12 ) ],
-"loop": true,
-"name": "Atack",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 22 ) ],
@@ -85,14 +85,19 @@ animations = [ {
 "name": "Idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 24 ) ],
-"loop": true,
-"name": "AtackWall",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 17 ), ExtResource( 13 ) ],
 "loop": true,
 "name": "Run",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 15 ) ],
+"loop": true,
+"name": "Atack",
+"speed": 20.0
+}, {
+"frames": [ ExtResource( 24 ) ],
+"loop": true,
+"name": "AtackWall",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 18 ) ],
@@ -104,11 +109,6 @@ animations = [ {
 "loop": true,
 "name": "Dash",
 "speed": 5.0
-}, {
-"frames": [ ExtResource( 15 ) ],
-"loop": true,
-"name": "Atack",
-"speed": 20.0
 }, {
 "frames": [ ExtResource( 23 ) ],
 "loop": true,
@@ -168,6 +168,7 @@ __meta__ = {
 [node name="Cenario" type="Node" parent="."]
 
 [node name="Fundo" type="Sprite" parent="Cenario"]
+position = Vector2( 0, 2.42169 )
 z_index = -4
 texture = ExtResource( 10 )
 
@@ -245,7 +246,7 @@ collision_layer = 16
 collision_mask = 16
 
 [node name="Direita" type="CollisionShape2D" parent="Cenario/Paredes_p1"]
-position = Vector2( 420, 70 )
+position = Vector2( 420, 20 )
 shape = SubResource( 3 )
 
 [node name="Esquerda" type="CollisionShape2D" parent="Cenario/Paredes_p1"]
@@ -257,7 +258,7 @@ collision_layer = 16384
 collision_mask = 16384
 
 [node name="Direita" type="CollisionShape2D" parent="Cenario/Paredes_p2"]
-position = Vector2( 420, 70 )
+position = Vector2( 420, 20 )
 shape = SubResource( 3 )
 
 [node name="Esquerda" type="CollisionShape2D" parent="Cenario/Paredes_p2"]
