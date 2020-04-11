@@ -70,12 +70,12 @@ func _physics_process(delta):
 			$HealthBar.set_position(Vector2(-35,-50))
 			if !esquerda:
 				_on_wall = false
+				$HealthBar.set_position(Vector2(-15,-50))
 		else: 
 			$HealthBar.set_position(Vector2(-5,-50))
 			if !direita:
 				_on_wall = false
-
-		
+				$HealthBar.set_position(Vector2(-25,-50))
 	else:
 		$Sprite.play("Jump")
 		
